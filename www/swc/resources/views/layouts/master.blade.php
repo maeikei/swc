@@ -17,6 +17,6 @@
         <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
         <!-- Latest compiled and minified JavaScript -->
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="{{{asset('/assets/css/sample.css')}}}"></script>
+        <script type="text/javascript" src="{{{asset('/assets/js/login.js')}}}"></script>
     </body>
 </html>
