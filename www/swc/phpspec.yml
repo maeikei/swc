@@ -1,5 +1,5 @@
 suites:
     main:
-        namespace: App
-        psr4_prefix: App
+        namespace: swc
+        psr4_prefix: swc
         src_path: app
