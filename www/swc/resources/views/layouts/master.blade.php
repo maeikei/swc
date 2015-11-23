@@ -16,5 +16,6 @@
         <div class="container">
             @yield('content')
         </div>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     </body>
 </html>
