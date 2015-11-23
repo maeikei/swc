@@ -15,3 +15,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::resource('welcome', 'WelcomeController');
+Route::resource('login', 'LoginController');
