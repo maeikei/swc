@@ -14,7 +14,3 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/swc', function () {
-    return view('welcome');
-});
-
