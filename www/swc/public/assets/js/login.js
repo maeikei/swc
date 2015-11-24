@@ -59,7 +59,7 @@ $(function(){
             saveKey(key.publicKey,'publicKey');
             $.post(window.location, 
             JSON.stringify(key.publicKey), 
-            success: function(data) {
+            function(data) {
             	console.log(data);
             });
         })
