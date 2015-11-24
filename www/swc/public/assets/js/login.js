@@ -55,8 +55,13 @@ $(function(){
             //console.log(key);
             console.log(key.publicKey);
             console.log(key.privateKey);
-            saveKey(key.publicKey,'publicKey');
             saveKey(key.privateKey,'privateKey');
+            saveKey(key.publicKey,'publicKey');
+            $.post(window.location, 
+            JSON.stringify(key.publicKey), 
+            success: function(data) {
+            	console.log(data);
+            });
         })
         .catch(function(err){
             console.error(err);
