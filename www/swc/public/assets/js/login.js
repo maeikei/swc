@@ -1,5 +1,5 @@
 $(function(){
-  function sendPublicKey(key){
+  function sendPublicKey(keydata){
     $.ajax({ 
       type: "POST",
       url:window.location, 
@@ -34,28 +34,7 @@ $(function(){
         console.error(err);
       });
   }
-  var privateKey = localStorage.getItem('swc.login.privateKey');
-  //console.log(privateKey);
-  if (privateKey && 'string'== typeof privateKey) {
-    key= JSON.parse(privateKey);
-    window.crypto.subtle.importKey(
-      "jwk", //can be "jwk" (public or private), "spki" (public only), or "pkcs8" (private only)
-      key,
-      {   //these are the algorithm options
-      name: "RSASSA-PKCS1-v1_5",
-      hash: {name: "SHA-256"}, //can be "SHA-1", "SHA-256", "SHA-384", or "SHA-512"
-      },
-      false, //whether the key is extractable (i.e. can be used in exportKey)
-      ["sign"] //"sign" for private key imports
-      )
-      .then(function(privateKey){
-        //returns a publicKey (or privateKey if you are importing a private key)
-        console.log(privateKey);
-      })
-    	.catch(function(err){
-    	  console.error(err);
-    	});
-    } else {
+  function createKeyPair() {
       window.crypto.subtle.generateKey(
         {
           name: "RSASSA-PKCS1-v1_5",
@@ -78,4 +57,32 @@ $(function(){
             console.error(err);
         });
     }
+  }
+  function importKey(privateKey) {
+    window.crypto.subtle.importKey(
+      "jwk", //can be "jwk" (public or private), "spki" (public only), or "pkcs8" (private only)
+      key,
+      {   //these are the algorithm options
+      name: "RSASSA-PKCS1-v1_5",
+      hash: {name: "SHA-256"}, //can be "SHA-1", "SHA-256", "SHA-384", or "SHA-512"
+      },
+      false, //whether the key is extractable (i.e. can be used in exportKey)
+      ["sign"] //"sign" for private key imports
+      )
+      .then(function(privateKey){
+        //returns a publicKey (or privateKey if you are importing a private key)
+        console.log(privateKey);
+      })
+    	.catch(function(err){
+    	  console.error(err);
+    	});
+  }
+  var privateKey = localStorage.getItem('swc.login.privateKey');
+  //console.log(privateKey);
+  if (privateKey && 'string'== typeof privateKey) {
+    var keyJson= JSON.parse(privateKey);
+    importKey(keyJson);
+  } else {
+      createKeyPair();
+  }
 });
