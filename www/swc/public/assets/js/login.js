@@ -24,7 +24,7 @@ $(function(){
 			data:"'" + JSON.stringify(keydata) + "'",
 			dataType: 'json',
 			contentType: 'application/json',
-			charset:'UTF-8'
+			charset:'UTF-8',
 			success: function(data) {
 			  console.log(data);
 			  if (data && data['token']) {
