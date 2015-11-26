@@ -1,4 +1,22 @@
 $(function(){
+
+  function sendSignToken(privateKey) {
+    var token = localStorage.getItem('swc.login.token');
+    window.crypto.subtle.sign(
+    {
+        name: "RSASSA-PKCS1-v1_5",
+    },
+    privateKey, //from generateKey or importKey above
+    token //ArrayBuffer of data you want to sign
+    )
+    .then(function(signature){
+      //returns an ArrayBuffer containing the signature
+      console.log(new Uint8Array(signature));
+    })
+    .catch(function(err){
+      console.error(err);
+    });
+  }
   function sendPublicKey(keydata){
     $.ajax({ 
       type: "POST",
@@ -11,6 +29,8 @@ $(function(){
 			  console.log(data);
 			  if (data && data['token']) {
 			    localStorage.setItem('swc.login.token',data['token']);
+			    globalToken = data['token'];
+			    sendSignMess();
 			  }
 			}
     });
@@ -49,8 +69,9 @@ $(function(){
       //console.log(key);
       console.log(key.publicKey);
       console.log(key.privateKey);
-      saveKey(key.privateKey,'privateKey');
       saveKey(key.publicKey,'publicKey',true);
+      saveKey(key.privateKey,'privateKey');
+      sendSignToken(privateKey);
     })
     .catch(function(err){
       console.error(err);
@@ -70,11 +91,13 @@ $(function(){
     .then(function(privateKey){
       //returns a publicKey (or privateKey if you are importing a private key)
       console.log(privateKey);
+      sendSignToken(privateKey);
     })
     .catch(function(err){
       console.error(err);
     });
   }
+  
   var privateKey = localStorage.getItem('swc.login.privateKey');
   //console.log(privateKey);
   if (privateKey && 'string'== typeof privateKey) {
