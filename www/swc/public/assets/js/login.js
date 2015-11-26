@@ -1,4 +1,8 @@
+
+
 $(function(){
+  
+  
   function ab2str(buf) {
     return String.fromCharCode.apply(null, new Uint16Array(buf));
   }
@@ -10,7 +14,11 @@ $(function(){
     }
     return buf;
   }
-  function sendSignToken(privateKey) {
+  
+  function sendSign(data){
+    
+  }
+  function signToken(privateKey) {
     var token = localStorage.getItem('swc.login.token');
     var abToken = str2ab(token); 
     window.crypto.subtle.sign(
@@ -22,7 +30,10 @@ $(function(){
     )
     .then(function(signature){
       //returns an ArrayBuffer containing the signature
-      console.log(new Uint8Array(signature));
+      console.log(signature);
+      var jsonSign = {'token':token,'signature':ab2str(new Uint8Array(signature))};
+      console.log(JSON.stringify(jsonSign));
+      sendSign(jsonSign)
     })
     .catch(function(err){
       console.error(err);
@@ -41,7 +52,7 @@ $(function(){
 			  if (data && data['token']) {
 			    localStorage.setItem('swc.login.token',data['token']);
 			    globalToken = data['token'];
-			    sendSignMess();
+			    signToken();
 			  }
 			}
     });
@@ -102,7 +113,7 @@ $(function(){
     .then(function(privateKey){
       //returns a publicKey (or privateKey if you are importing a private key)
       console.log(privateKey);
-      sendSignToken(privateKey);
+      signToken(privateKey);
     })
     .catch(function(err){
       console.error(err);
