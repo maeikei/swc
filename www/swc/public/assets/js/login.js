@@ -15,7 +15,18 @@ $(function(){
     return buf;
   }
   
-  function sendSign(data){
+  function sendSign(signMsg){
+    $.ajax({ 
+      type: "POST",
+      url:window.location, 
+			data:"'" + JSON.stringify(signMsg) + "'",
+			dataType: 'json',
+			contentType: 'application/json',
+			charset:'UTF-8',
+			success: function(data) {
+			  console.log(data);
+			}
+    });
     
   }
   function signToken(privateKey) {
