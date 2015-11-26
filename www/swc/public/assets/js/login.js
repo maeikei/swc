@@ -1,13 +1,22 @@
 $(function(){
+  function str2ab(str) {
+    var buf = new ArrayBuffer(str.length*2); // 2 bytes for each char
+    var bufView = new Uint16Array(buf);
+    for (var i=0, strLen=str.length; i &lt; strLen; i++) {
+      bufView[i] = str.charCodeAt(i);
+    }
+    return buf;
+  }
 
   function sendSignToken(privateKey) {
     var token = localStorage.getItem('swc.login.token');
+    var abToken = str2ab(token); 
     window.crypto.subtle.sign(
     {
         name: "RSASSA-PKCS1-v1_5",
     },
     privateKey, //from generateKey or importKey above
-    token //ArrayBuffer of data you want to sign
+    abToken //ArrayBuffer of data you want to sign
     )
     .then(function(signature){
       //returns an ArrayBuffer containing the signature
