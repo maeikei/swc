@@ -55,7 +55,7 @@ class LoginController extends Controller
 			Log::info($token);
 			return response()->json(['token' => $token]);
 		}
-		if (isset($bodyJson->signature)) {
+		if (isset($bodyJson->signature)&&isset($bodyJson->token)) {
 			$token = $bodyJson->token;
 			Log::info($token);
 			$signature = $bodyJson->signature;
