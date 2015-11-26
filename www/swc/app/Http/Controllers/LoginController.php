@@ -41,29 +41,28 @@ class LoginController extends Controller
     public function store(Request $request)
     {
         //
-	//Log::info('store: '.$request->method());
-	if ($request->isMethod('post')) {
-    		//
-		$bodyContent = $request->getContent();
-		//Log::info($bodyContent);
-		$bodyContent = str_replace("'","",$bodyContent);
-		Log::info($bodyContent);
-		$bodyJson = json_decode($bodyContent);
-		Log::info(json_last_error_msg());
-		if (isset($bodyJson->kty) && 'RSA'== $bodyJson->kty) {
-			$token = hash('sha512',$bodyContent);
-			Log::info($token);
-			return response()->json(['token' => $token]);
-		}
-		if (isset($bodyJson->signature)&&isset($bodyJson->token)) {
-			$token = $bodyJson->token;
-			Log::info($token);
-			$signature = $bodyJson->signature;
-			Log::info($signature);
-			return response()->json(['token' => $token]);
-		}
-		return response()->json(['status'=>'success']);
-	}
+        //Log::info('store: '.$request->method());
+        if ($request->isMethod('post')) {
+          $bodyContent = $request->getContent();
+          //Log::info($bodyContent);
+          $bodyContent = str_replace("'","",$bodyContent);
+          Log::info($bodyContent);
+          $bodyJson = json_decode($bodyContent);
+          Log::info(json_last_error_msg());
+          if (isset($bodyJson->kty) && 'RSA'== $bodyJson->kty) {
+            $token = hash('sha512',$bodyContent);
+            Log::info($token);
+            return response()->json(['token' => $token]);
+          }
+          if (isset($bodyJson->signature)&&isset($bodyJson->token)) {
+            $token = $bodyJson->token;
+            Log::info($token);
+            $signature = $bodyJson->signature;
+            Log::info($signature);
+            return response()->json(['token' => $token]);
+          }
+          return response()->json(['status'=>'success']);
+        }
     }
 
     /**
