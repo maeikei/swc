@@ -2,7 +2,7 @@ $(function(){
   function sendPublicKey(key){
     $.ajax({ 
       type: "POST",
-			url:window.location, 
+      url:window.location, 
 			data:"'" + JSON.stringify(keydata) + "'",
 			dataType: 'json',
 			contentType: 'application/json',
