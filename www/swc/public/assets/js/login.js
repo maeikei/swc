@@ -28,11 +28,11 @@ $(function(){
         localStorage.setItem(name,JSON.stringify(keydata));
         if (send) {
           sendPublicKey(keydata);
-        })
-        .catch(function(err){
-            console.error(err);
-        });
-    }
+        }
+      })
+      .catch(function(err){
+        console.error(err);
+      });
   }
   var privateKey = localStorage.getItem('swc.login.privateKey');
   //console.log(privateKey);
