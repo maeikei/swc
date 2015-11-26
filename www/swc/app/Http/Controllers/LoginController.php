@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use swc\Http\Requests;
 use swc\Http\Controllers\Controller;
 
+use Log;
+
 class LoginController extends Controller
 {
     /**
@@ -39,6 +41,23 @@ class LoginController extends Controller
     public function store(Request $request)
     {
         //
+	//Log::info('store: '.$request->method());
+	if ($request->isMethod('post')) {
+    		//
+		$bodyContent = $request->getContent();
+		//Log::info($bodyContent);
+		$bodyContent = str_replace("'","",$bodyContent);
+		Log::info($bodyContent);
+		$bodyJson = json_decode($bodyContent);
+		Log::info(json_last_error_msg());
+		Log::info($bodyJson->alg);
+		Log::info($bodyJson->key_ops[0]);
+		Log::info($bodyJson->kty);
+		Log::info($bodyJson->e);
+		Log::info($bodyJson->n);
+		var_dump($bodyJson);
+		return response()->json($bodyJson);
+	}
     }
 
     /**
