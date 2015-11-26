@@ -59,7 +59,7 @@ $(function(){
   function importKey(privateKey) {
     window.crypto.subtle.importKey(
       "jwk", //can be "jwk" (public or private), "spki" (public only), or "pkcs8" (private only)
-      key,
+      privateKey,
       {   //these are the algorithm options
       name: "RSASSA-PKCS1-v1_5",
       hash: {name: "SHA-256"}, //can be "SHA-1", "SHA-256", "SHA-384", or "SHA-512"
