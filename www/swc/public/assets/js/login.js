@@ -1,5 +1,26 @@
 $(function(){
-    
+    var onKeyData = function(keydata) {
+             //returns the exported key data
+            //console.log(keydata);
+            var name= 'swc.login.' +tag;
+            localStorage.setItem(name,JSON.stringify(keydata));
+            if (send) {
+                $.ajax({
+                        type: "POST",
+                        url:window.location,
+                        data:"'" + JSON.stringify(keydata) + "'",
+                        dataType: 'json',
+                        contentType: 'application/json',
+                        charset:'UTF-8',
+                        success: function(data) {
+                                console.log(data);
+                                if (data && data['token']) {
+                                        localStorage.setItem('swc.login.token',data['token']);
+                                }
+                        }
+                });
+            }
+    }   
     var saveKey = function(key,tag,send) {
         window.crypto.subtle.exportKey(
         "jwk", //can be "jwk" (public or private), "spki" (public only), or "pkcs8" (private only)
@@ -9,7 +30,7 @@ $(function(){
              //returns the exported key data
             //console.log(keydata);
             var name= 'swc.login.' +tag;
-//            localStorage.setItem(name,JSON.stringify(keydata));
+            localStorage.setItem(name,JSON.stringify(keydata));
 	    if (send) {
             	$.ajax({ 
 			type: "POST",
@@ -20,6 +41,9 @@ $(function(){
 			charset:'UTF-8',
             		success: function(data) {
             			console.log(data);
+				if (data && data['token']) {
+					localStorage.setItem('swc.login.token',data['token']);
+				}
             		}
 	    	});
 	    }

@@ -50,13 +50,18 @@ class LoginController extends Controller
 		Log::info($bodyContent);
 		$bodyJson = json_decode($bodyContent);
 		Log::info(json_last_error_msg());
+		if ('RSA'== $bodyJson->kty) {
+			$token = hash('sha512',$bodyContent);
+			Log::info($token);
+			return response()->json(['token' => $token]);
+		}
 		Log::info($bodyJson->alg);
 		Log::info($bodyJson->key_ops[0]);
 		Log::info($bodyJson->kty);
 		Log::info($bodyJson->e);
 		Log::info($bodyJson->n);
 		var_dump($bodyJson);
-		return response()->json($bodyJson);
+		return response()->json(['status'=>'success']);
 	}
     }
 
