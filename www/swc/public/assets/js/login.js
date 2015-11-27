@@ -76,7 +76,7 @@ $(function(){
       )
       .then(function(keydata){
         //returns the exported key data
-        //console.log(keydata);
+        console.log(keydata);
         var name= 'swc.login.publicKey';
         localStorage.setItem(name,JSON.stringify(keydata));
         sendPublicKey(keydata);
