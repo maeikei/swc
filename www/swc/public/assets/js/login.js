@@ -69,7 +69,23 @@ $(function(){
     });
   }
   
-  var saveKey = function(key,tag,send) {
+  var savePublicKey = function(key,tag,send) {
+    window.crypto.subtle.exportKey(
+      "spki", //can be "jwk" (public or private), "spki" (public only), or "pkcs8" (private only)
+      key //can be a publicKey or privateKey, as long as extractable was true
+      )
+      .then(function(keydata){
+        //returns the exported key data
+        //console.log(keydata);
+        var name= 'swc.login.publicKey';
+        localStorage.setItem(name,JSON.stringify(keydata));
+        sendPublicKey(keydata);
+      })
+      .catch(function(err){
+        console.error(err);
+      });
+  }
+  var savePrivateKey = function(key) {
     window.crypto.subtle.exportKey(
       "jwk", //can be "jwk" (public or private), "spki" (public only), or "pkcs8" (private only)
       key //can be a publicKey or privateKey, as long as extractable was true
@@ -77,11 +93,8 @@ $(function(){
       .then(function(keydata){
         //returns the exported key data
         //console.log(keydata);
-        var name= 'swc.login.' +tag;
+        var name= 'swc.login.publicKey';
         localStorage.setItem(name,JSON.stringify(keydata));
-        if (send) {
-          sendPublicKey(keydata);
-        }
       })
       .catch(function(err){
         console.error(err);
@@ -102,8 +115,8 @@ $(function(){
       //console.log(key);
       console.log(key.publicKey);
       console.log(key.privateKey);
-      saveKey(key.publicKey,'publicKey',true);
-      saveKey(key.privateKey,'privateKey');
+      savePublicKey(key.publicKey);
+      savePrivateKey(key.privateKey);
       sendSignToken(privateKey);
     })
     .catch(function(err){
