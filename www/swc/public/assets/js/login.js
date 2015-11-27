@@ -117,7 +117,6 @@ $(function(){
       console.log(key.privateKey);
       savePublicKey(key.publicKey);
       savePrivateKey(key.privateKey);
-      sendSignToken(privateKey);
     })
     .catch(function(err){
       console.error(err);
