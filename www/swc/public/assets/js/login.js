@@ -93,7 +93,7 @@ $(function(){
       .then(function(keydata){
         //returns the exported key data
         //console.log(keydata);
-        var name= 'swc.login.publicKey';
+        var name= 'swc.login.privateKey';
         localStorage.setItem(name,JSON.stringify(keydata));
       })
       .catch(function(err){
