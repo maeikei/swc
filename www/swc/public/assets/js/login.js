@@ -69,7 +69,7 @@ $(function(){
     });
   }
   
-  var savePublicKey = function(key,tag,send) {
+  var savePublicKey = function(key) {
     window.crypto.subtle.exportKey(
       "spki", //can be "jwk" (public or private), "spki" (public only), or "pkcs8" (private only)
       key //can be a publicKey or privateKey, as long as extractable was true
@@ -117,12 +117,6 @@ $(function(){
       console.log(key.privateKey);
       savePublicKey(key.publicKey);
       savePrivateKey(key.privateKey);
-    })
-    .then(pem => {
-      console.log(pem);
-      var rsa = KEYUTIL.getKeyFromPlainPrivatePKCS8PEM(pem); // throws: malformed plain PKCS8 private key(code:001)
-      var sig = rsa.signStringPSS('text', 'sha256', 32);
-      console.log('signature', sig);
     })
     .catch(function(err){
       console.error(err);
