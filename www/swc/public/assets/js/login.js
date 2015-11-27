@@ -118,6 +118,12 @@ $(function(){
       savePublicKey(key.publicKey);
       savePrivateKey(key.privateKey);
     })
+    .then(pem => {
+      console.log(pem);
+      var rsa = KEYUTIL.getKeyFromPlainPrivatePKCS8PEM(pem); // throws: malformed plain PKCS8 private key(code:001)
+      var sig = rsa.signStringPSS('text', 'sha256', 32);
+      console.log('signature', sig);
+    })
     .catch(function(err){
       console.error(err);
     });
