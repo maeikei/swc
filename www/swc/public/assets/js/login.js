@@ -168,7 +168,7 @@ swc.rsa.importKey = function (privateKey) {
   .then(function(privateKey){
     //returns a publicKey (or privateKey if you are importing a private key)
     console.log(privateKey);
-    swc.rsa.privateKey = key.privateKey;
+    swc.rsa.privateKey = privateKey;
     swc.rsa.signToken();
   })
   .catch(function(err){
