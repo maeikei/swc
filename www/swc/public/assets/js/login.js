@@ -1,4 +1,9 @@
 
+var swc = swc || {};
+swc.rsa = swc.rsa || {};
+swc.rsa.ab2str = function(buf) {
+  return String.fromCharCode.apply(null, new Uint16Array(buf));
+}
 
 $(function(){
   
