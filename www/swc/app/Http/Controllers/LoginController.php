@@ -50,13 +50,14 @@ class LoginController extends Controller
           $bodyContent = $request->getContent();
           //Log::info($bodyContent);
           $bodyContent = str_replace("'","",$bodyContent);
-          Log::info($bodyContent);
+          //Log::info($bodyContent);
           $bodyJson = json_decode($bodyContent);
           Log::info(json_last_error_msg());
           if (isset($bodyJson->publicKey)) {
             $token = hash('sha512',$bodyJson->publicKey);
             Log::info($token);
             $keyPath = $this->keyRoot_ + $token +'/';
+            Log::info($keyPath);
             $output = shell_exec('mkdir -p' + $keyPath);
             Log::info($output);
             file_put_contents($keyPath+'/publicKey.pem', $bodyJson->publicKey);
