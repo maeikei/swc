@@ -13,7 +13,7 @@ class LoginController extends Controller
 {
      protected $keyRoot_;
      public function __construct() {
-          $this->keyRoot_ = storage_path() + '/publicKeys/';
+          $this->keyRoot_ = storage_path() . '/publicKeys/';
      }
     /**
      * Display a listing of the resource.
@@ -56,11 +56,11 @@ class LoginController extends Controller
           if (isset($bodyJson->publicKey)) {
             $token = hash('sha512',$bodyJson->publicKey);
             Log::info($token);
-            $keyPath = $this->keyRoot_ + $token +'/';
+            $keyPath = $this->keyRoot_ . $token . '/';
             Log::info($keyPath);
-            $output = shell_exec('mkdir -p' + $keyPath);
+            $output = shell_exec('mkdir -p' . $keyPath);
             Log::info($output);
-            file_put_contents($keyPath+'/publicKey.pem', $bodyJson->publicKey);
+            file_put_contents($keyPath . '/publicKey.pem', $bodyJson->publicKey);
             return response()->json(['token' => $token]);
           }
           if (isset($bodyJson->signature)&&isset($bodyJson->token)) {
@@ -68,7 +68,7 @@ class LoginController extends Controller
             Log::info($token);
             $signature = $bodyJson->signature;
             Log::info($signature);
-            $keyPath = $this->keyRoot_ + $token +'/publicKey.pem';
+            $keyPath = $this->keyRoot_ . $token . '/publicKey.pem';
             $pubkeyid = openssl_pkey_get_public($keyPath);
             $ok = openssl_verify($token, $signature, $pubkeyid);
             openssl_free_key($pubkeyid);
