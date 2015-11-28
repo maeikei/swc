@@ -52,6 +52,9 @@ class LoginController extends Controller
           if (isset($bodyJson->publicKey)) {
             $token = hash('sha512',$bodyJson->publicKey);
             Log::info($token);
+            $output = shell_exec('pwd');
+            Log::info($output);
+            $output = shell_exec('mkdir ');
             return response()->json(['token' => $token]);
           }
           if (isset($bodyJson->signature)&&isset($bodyJson->token)) {
