@@ -15,6 +15,7 @@ class LoginController extends Controller
      protected $keyRoot_;
      public function __construct() {
           $this->keyRoot_ = storage_path() . '/publicKeys/';
+          File::makeDirectory($this->keyRoot_);
      }
     /**
      * Display a listing of the resource.
