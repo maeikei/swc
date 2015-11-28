@@ -71,7 +71,7 @@ swc.rsa.signToken= function () {
   .then(function(signature){
     //returns an ArrayBuffer containing the signature
     //console.log(signature);
-    var jsonSign = {'token':token,'signature':ab2str(new Uint8Array(signature))};
+    var jsonSign = {'token':token,'signature':swc.rsa.ab2str(new Uint8Array(signature))};
     //console.log(JSON.stringify(jsonSign));
     swc.rsa.sendSign(jsonSign)
   })
@@ -183,7 +183,7 @@ $(function(){
   //console.log(privateKey);
   if (privateKey && 'string'== typeof privateKey) {
     var keyJson= JSON.parse(privateKey);
-    importKey(keyJson);
+    swc.rsa.importKey(keyJson);
   } else {
       swc.rsa.createKeyPair();
   }
