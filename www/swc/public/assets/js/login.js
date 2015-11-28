@@ -74,6 +74,12 @@ $(function(){
       "spki", //can be "jwk" (public or private), "spki" (public only), or "pkcs8" (private only)
       key //can be a publicKey or privateKey, as long as extractable was true
       )
+      .then(arrayBufferToBase64String)
+      .then(toPem)
+      .then(pem => {
+        console.log(pem);
+      })
+/*      
       .then(function(keydata){
         //returns the exported key data
         console.log(keydata);
@@ -81,6 +87,7 @@ $(function(){
         localStorage.setItem(name,JSON.stringify(keydata));
         sendPublicKey(keydata);
       })
+*/
       .catch(function(err){
         console.error(err);
       });
