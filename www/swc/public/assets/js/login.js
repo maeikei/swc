@@ -59,7 +59,7 @@ swc.rsa.sendSign = function (signMsg){
 
 swc.rsa.signToken= function (privateKey) {
   var token = localStorage.getItem('swc.login.token');
-  var abToken = str2ab(token); 
+  var abToken = swc.rsa.str2ab(token); 
   window.crypto.subtle.sign(
   {
       name: "RSASSA-PKCS1-v1_5",
