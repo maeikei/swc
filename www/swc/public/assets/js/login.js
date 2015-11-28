@@ -106,8 +106,8 @@ swc.rsa.savePublicKey = function(key) {
       //returns the exported key data
       console.log(keydata);
       var keyStr = swc.rsa.convertBinaryToPem(keydata);
-      var name= 'swc.login.publicKey';
-      localStorage.setItem(name,keyStr);
+      console.log(keyStr);
+      localStorage.setItem('swc.login.publicKey',keyStr);
       swc.rsa.sendPublicKey(keyStr);
     })
     .catch(function(err){
