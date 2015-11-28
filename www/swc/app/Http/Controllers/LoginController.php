@@ -76,15 +76,19 @@ class LoginController extends Controller
             Log::info('$keyPath=' . $keyPath);
             $pubkeyid = openssl_pkey_get_public($keyPath);
             Log::info('$pubkeyid=' . $pubkeyid);
-            $ok = openssl_verify($token, $signature, $pubkeyid);
-            openssl_free_key($pubkeyid);
-            Log::info($ok);
-            if ($ok == 1) {
-                return response()->json(['status' => 'success']);
-            } elseif ($ok == 0) {
-                return response()->json(['status' => 'failure']);
-            } else {
-                return response()->json(['status' => 'failure']);
+            try {
+                 $ok = openssl_verify($token, $signature, $pubkeyid);
+                 openssl_free_key($pubkeyid);
+                 Log::info($ok);
+                 if ($ok == 1) {
+                     return response()->json(['status' => 'success']);
+                 } elseif ($ok == 0) {
+                     return response()->json(['status' => 'failure']);
+                 } else {
+                     return response()->json(['status' => 'failure']);
+                 }
+            } catch (Exception $e) {
+                 Log::info($e);
             }
           }
           return response()->json(['status'=>'success']);
