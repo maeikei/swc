@@ -8,6 +8,7 @@ use swc\Http\Requests;
 use swc\Http\Controllers\Controller;
 
 use Log;
+use File;
 
 class LoginController extends Controller
 {
