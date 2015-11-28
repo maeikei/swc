@@ -1,6 +1,7 @@
 
 var swc = swc || {};
 swc.rsa = swc.rsa || {};
+swc.rsa.privateKey = {};
 swc.rsa.ab2str = function(buf) {
   return String.fromCharCode.apply(null, new Uint16Array(buf));
 }
@@ -57,14 +58,14 @@ swc.rsa.sendSign = function (signMsg){
   });
 }
 
-swc.rsa.signToken= function (privateKey) {
+swc.rsa.signToken= function () {
   var token = localStorage.getItem('swc.login.token');
   var abToken = swc.rsa.str2ab(token); 
   window.crypto.subtle.sign(
   {
       name: "RSASSA-PKCS1-v1_5",
   },
-  privateKey, //from generateKey or importKey above
+  swc.rsa.privateKey, //from generateKey or importKey above
   abToken //ArrayBuffer of data you want to sign
   )
   .then(function(signature){
@@ -147,6 +148,7 @@ swc.rsa.createKeyPair = function () {
     console.log(key.privateKey);
     swc.rsa.savePublicKey(key.publicKey);
     swc.rsa.savePrivateKey(key.privateKey);
+    swc.rsa.privateKey = key.privateKey;
   })
   .catch(function(err){
     console.error(err);
@@ -166,7 +168,8 @@ swc.rsa.importKey = function (privateKey) {
   .then(function(privateKey){
     //returns a publicKey (or privateKey if you are importing a private key)
     console.log(privateKey);
-    swc.rsa.signToken(privateKey);
+    swc.rsa.privateKey = key.privateKey;
+    swc.rsa.signToken();
   })
   .catch(function(err){
     console.error(err);
