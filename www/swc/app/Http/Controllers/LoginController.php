@@ -15,7 +15,7 @@ class LoginController extends Controller
      protected $keyRoot_;
      public function __construct() {
           $this->keyRoot_ = storage_path() . '/publicKeys/';
-          File::makeDirectory($this->keyRoot_);
+          File::makeDirectory($this->keyRoot_, 0777, true, true);
      }
     /**
      * Display a listing of the resource.
@@ -60,7 +60,7 @@ class LoginController extends Controller
             Log::info($token);
             $keyPath = $this->keyRoot_ . $token . '/';
             Log::info($keyPath);
-            File::makeDirectory($keyPath);
+            File::makeDirectory($keyPath, 0777, true, true);
             //$output = shell_exec('mkdir -p' . $keyPath);
             //Log::info($output);
             //$output = shell_exec('touch ' . $keyPath . '/publicKey.pem');
