@@ -58,9 +58,10 @@ class LoginController extends Controller
             Log::info($token);
             $keyPath = $this->keyRoot_ . $token . '/';
             Log::info($keyPath);
-            $output = shell_exec('mkdir -p' . $keyPath);
-            Log::info($output);
-            $output = shell_exec('touch ' . $keyPath . '/publicKey.pem');
+            File::makeDirectory($keyPath);
+            //$output = shell_exec('mkdir -p' . $keyPath);
+            //Log::info($output);
+            //$output = shell_exec('touch ' . $keyPath . '/publicKey.pem');
             file_put_contents($keyPath . '/publicKey.pem', $bodyJson->publicKey);
             return response()->json(['token' => $token]);
           }
