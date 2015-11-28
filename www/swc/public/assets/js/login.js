@@ -23,7 +23,7 @@ swc.rsa.arrayBufferToBase64String = function (arrayBuffer) {
 }
 	
 swc.rsa.convertBinaryToPem = function (binaryData) {
-	var base64Cert = arrayBufferToBase64String(binaryData);
+	var base64Cert = swc.rsa.arrayBufferToBase64String(binaryData);
 
 	var pemCert = "-----BEGIN PUBLIC KEY-----\r\n";
 
@@ -72,7 +72,7 @@ swc.rsa.signToken= function (privateKey) {
     //console.log(signature);
     var jsonSign = {'token':token,'signature':ab2str(new Uint8Array(signature))};
     //console.log(JSON.stringify(jsonSign));
-    sendSign(jsonSign)
+    swc.rsa.sendSign(jsonSign)
   })
   .catch(function(err){
     console.error(err);
@@ -91,7 +91,7 @@ swc.rsa.sendPublicKey = function (keyStr){
 		  if (data && data['token']) {
 		    localStorage.setItem('swc.login.token',data['token']);
 		    globalToken = data['token'];
-		    signToken();
+		    swc.rsa.signToken();
 		  }
 		}
   });
@@ -108,7 +108,7 @@ swc.rsa.savePublicKey = function(key) {
       var keyStr = convertBinaryToPem(keydata);
       var name= 'swc.login.publicKey';
       localStorage.setItem(name,keyStr);
-      sendPublicKey(keyStr);
+      swc.rsa.sendPublicKey(keyStr);
     })
     .catch(function(err){
       console.error(err);
@@ -144,8 +144,8 @@ swc.rsa.createKeyPair = function () {
     //console.log(key);
     console.log(key.publicKey);
     console.log(key.privateKey);
-    savePublicKey(key.publicKey);
-    savePrivateKey(key.privateKey);
+    swc.rsa.savePublicKey(key.publicKey);
+    swc.rsa.savePrivateKey(key.privateKey);
   })
   .catch(function(err){
     console.error(err);
@@ -165,7 +165,7 @@ swc.rsa.importKey = function (privateKey) {
   .then(function(privateKey){
     //returns a publicKey (or privateKey if you are importing a private key)
     console.log(privateKey);
-    signToken(privateKey);
+    swc.rsa.signToken(privateKey);
   })
   .catch(function(err){
     console.error(err);
@@ -181,6 +181,6 @@ $(function(){
     var keyJson= JSON.parse(privateKey);
     importKey(keyJson);
   } else {
-      createKeyPair();
+      swc.rsa.createKeyPair();
   }
 });
