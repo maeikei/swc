@@ -11,7 +11,10 @@ use Log;
 
 class LoginController extends Controller
 {
-     public keyRoot_;
+     protected $keyRoot_;
+     public function __construct() {
+          $this->keyRoot_ = storage_path() + '/publicKeys/';
+     }
     /**
      * Display a listing of the resource.
      *
@@ -41,7 +44,6 @@ class LoginController extends Controller
      */
     public function store(Request $request)
     {
-        this->keyRoot_ = storage_path() + '/publicKeys/';
         //
         //Log::info('store: '.$request->method());
         if ($request->isMethod('post')) {
@@ -54,7 +56,7 @@ class LoginController extends Controller
           if (isset($bodyJson->publicKey)) {
             $token = hash('sha512',$bodyJson->publicKey);
             Log::info($token);
-            $keyPath = this->keyRoot_ + $token +'/';
+            $keyPath = $this->keyRoot_ + $token +'/';
             $output = shell_exec('mkdir -p' + $keyPath);
             Log::info($output);
             file_put_contents($keyPath+'/publicKey.pem', $bodyJson->publicKey);
@@ -65,7 +67,7 @@ class LoginController extends Controller
             Log::info($token);
             $signature = $bodyJson->signature;
             Log::info($signature);
-            $keyPath = this->keyRoot_ + $token +'/publicKey.pem';
+            $keyPath = $this->keyRoot_ + $token +'/publicKey.pem';
             $pubkeyid = openssl_pkey_get_public($keyPath);
             $ok = openssl_verify($token, $signature, $pubkeyid);
             openssl_free_key($pubkeyid);
