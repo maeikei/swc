@@ -14,6 +14,35 @@ $(function(){
     }
     return buf;
   }
+  function arrayBufferToBase64String(arrayBuffer) {
+		var byteArray = new Uint8Array(arrayBuffer)
+		var byteString = '';
+		for (var i=0; i<byteArray.byteLength; i++) {
+			byteString += String.fromCharCode(byteArray[i]);
+		}
+		return btoa(byteString);
+	}
+	
+  function convertBinaryToPem(binaryData) {
+		var base64Cert = arrayBufferToBase64String(binaryData);
+
+		var pemCert = "-----BEGIN PUBLIC KEY-----\r\n";
+
+		var nextIndex = 0;
+		var lineLength;
+		while (nextIndex < base64Cert.length) {
+			if (nextIndex + 64 <= base64Cert.length) {
+				pemCert += base64Cert.substr(nextIndex, 64) + "\r\n";
+			} else {
+				pemCert += base64Cert.substr(nextIndex) + "\r\n";
+			}
+			nextIndex += 64;
+		}
+
+		pemCert += "-----END PUBLIC KEY-----\r\n";
+		return pemCert;
+	}
+  
   
   function sendSign(signMsg){
     $.ajax({ 
@@ -50,11 +79,11 @@ $(function(){
       console.error(err);
     });
   }
-  function sendPublicKey(keydata){
+  function sendPublicKey(keyStr){
     $.ajax({ 
       type: "POST",
       url:window.location, 
-			data:"'" + JSON.stringify(keydata) + "'",
+			data:"'" + keyStr + "'",
 			dataType: 'json',
 			contentType: 'application/json',
 			charset:'UTF-8',
@@ -74,20 +103,14 @@ $(function(){
       "spki", //can be "jwk" (public or private), "spki" (public only), or "pkcs8" (private only)
       key //can be a publicKey or privateKey, as long as extractable was true
       )
-      .then(arrayBufferToBase64String)
-      .then(toPem)
-      .then(pem => {
-        console.log(pem);
-      })
-/*      
       .then(function(keydata){
         //returns the exported key data
         console.log(keydata);
+        var keyStr = convertBinaryToPem(keydata);
         var name= 'swc.login.publicKey';
-        localStorage.setItem(name,JSON.stringify(keydata));
-        sendPublicKey(keydata);
+        localStorage.setItem(name,keyStr);
+        sendPublicKey(keyStr);
       })
-*/
       .catch(function(err){
         console.error(err);
       });
