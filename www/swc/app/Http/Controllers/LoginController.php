@@ -11,6 +11,7 @@ use Log;
 
 class LoginController extends Controller
 {
+    const KEYROOT = storage_path() + '/publicKeys/';
     /**
      * Display a listing of the resource.
      *
@@ -52,9 +53,10 @@ class LoginController extends Controller
           if (isset($bodyJson->publicKey)) {
             $token = hash('sha512',$bodyJson->publicKey);
             Log::info($token);
-            $output = shell_exec('pwd');
+            $keyPath = self::KEYROOT + $token +'/';
+            $output = shell_exec('mkdir -p' + $keyPath);
             Log::info($output);
-            $output = shell_exec('mkdir ');
+            file_put_contents($keyPath+'/publicKey.pem', $bodyJson->publicKey);
             return response()->json(['token' => $token]);
           }
           if (isset($bodyJson->signature)&&isset($bodyJson->token)) {
@@ -62,7 +64,18 @@ class LoginController extends Controller
             Log::info($token);
             $signature = $bodyJson->signature;
             Log::info($signature);
-            return response()->json(['token' => $token]);
+            $keyPath = self::KEYROOT + $token +'/publicKey.pem';
+            $pubkeyid = openssl_pkey_get_public($keyPath);
+            $ok = openssl_verify($token, $signature, $pubkeyid);
+            openssl_free_key($pubkeyid);
+            Log::info($ok);
+            if ($ok == 1) {
+                return response()->json(['status' => 'success']);
+            } elseif ($ok == 0) {
+                return response()->json(['status' => 'failure']);
+            } else {
+                return response()->json(['status' => 'failure']);
+            }
           }
           return response()->json(['status'=>'success']);
         }
