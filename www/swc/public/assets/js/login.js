@@ -4,6 +4,7 @@ swc.rsa = swc.rsa || {};
 swc.rsa.privateKey = {};
 swc.rsa.ab2str = function(buf) {
   var uint8ab= new Uint8Array(buf);
+  console.log(uint8ab);
   var str ='';
   for( var i = 0 ; i < uint8ab.length-1;i++) {
     str += '0x' + uint8ab[i].toString(16) + ',';
