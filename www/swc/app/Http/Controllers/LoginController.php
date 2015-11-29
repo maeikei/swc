@@ -72,7 +72,7 @@ class LoginController extends Controller
             Log::info($token);
             $signature = $bodyJson->signature;
             #Log::info($signature);
-            $keyPath = $this->keyRoot_ . $token . '/publicKey.pem';
+            $keyPath = 'file://' . $this->keyRoot_ . $token . '/publicKey.pem';
             Log::info('$keyPath=' . $keyPath);
             $pubkeyid = openssl_pkey_get_public($keyPath);
             Log::info('$pubkeyid=' . $pubkeyid);
