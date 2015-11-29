@@ -72,7 +72,7 @@ swc.rsa.signToken= function () {
     //returns an ArrayBuffer containing the signature
     //console.log(signature);
     var jsonSign = {'token':token,'signature':swc.rsa.ab2str(new Uint8Array(signature))};
-    //console.log(JSON.stringify(jsonSign));
+    console.log(JSON.stringify(jsonSign));
     swc.rsa.sendSign(jsonSign)
   })
   .catch(function(err){
