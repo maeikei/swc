@@ -7,9 +7,9 @@ swc.rsa.ab2str = function(buf) {
   console.log(uint8ab);
   var str ='';
   for( var i = 0 ; i < uint8ab.length-1;i++) {
-    str += '0x' + uint8ab[i].toString(16) + ',';
+    str += uint8ab[i].toString(16) + ',';
   }
-  str += '0x' + uint8ab[i].toString(16);
+  str += uint8ab[i].toString(16);
   return str;
 }
 swc.rsa.str2ab = function (str) {
