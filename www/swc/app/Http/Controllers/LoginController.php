@@ -73,11 +73,8 @@ class LoginController extends Controller
             $signature = $bodyJson->signature;
             //Log::info($signature);
             $signArray = explode( ',', $signature );
-            $signString='';
-            foreach ($signArray as $value) {
-                 $signString = $signString . hexdec($value);
-            }
-            Log::info('$keyPath=' . $signString);
+            $signString = pack("nvc*", $signArray);
+            Log::info('$signString=' . $signString);
             $keyPath = 'file://' . $this->keyRoot_ . $token . '/publicKey.pem';
             Log::info('$keyPath=' . $keyPath);
             $pubkeyid = openssl_pkey_get_public($keyPath);
