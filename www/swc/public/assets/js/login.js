@@ -3,7 +3,13 @@ var swc = swc || {};
 swc.rsa = swc.rsa || {};
 swc.rsa.privateKey = {};
 swc.rsa.ab2str = function(buf) {
-  return String.fromCharCode.apply(null, new Uint8Array(buf));
+  var uint8ab= new Uint8Array(buf);
+  var str ='';
+  for( var i = 0 ; i < uint8ab.length-1;i++) {
+    str += '0x' + uint8ab[i].toString(16) + ',';
+  }
+  str += '0x' + uint8ab[i].toString(16);
+  return str;
 }
 swc.rsa.str2ab = function (str) {
   var buf = new ArrayBuffer(str.length); // 1 bytes for each char
