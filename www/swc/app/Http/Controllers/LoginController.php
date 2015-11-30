@@ -56,7 +56,7 @@ class LoginController extends Controller
           $bodyJson = json_decode($bodyContent);
           Log::info(json_last_error_msg());
           if (isset($bodyJson->publicKey)) {
-            $token = hash('sha512',$bodyJson->publicKey);
+            $token = hash('sha256',$bodyJson->publicKey);
             Log::info($token);
             $keyPath = $this->keyRoot_ . $token . '/';
             Log::info($keyPath);
