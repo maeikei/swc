@@ -138,7 +138,7 @@ swc.rsa.savePrivateKey = function(key) {
       var keyStr = swc.rsa.convertBinaryToPem(keydata);
       console.log(keyStr);
       var name= 'swc.login.privateKey';
-      localStorage.setItem(name,JSON.stringify(keydata));
+      localStorage.setItem(name,keyStr);
     })
     .catch(function(err){
       console.error(err);
