@@ -81,15 +81,15 @@ class LoginController extends Controller
                  Log::info($byte);
                  $signArray[] = $byte;
             }
-            var_dump($signArray);
-            $signString = pack("nvc*", $signArray);
+            //var_dump($signArray);
+            $signString = implode(array_map("chr", $signArray));
             Log::info('$signString=' . $signString);
             $keyPath = 'file://' . $this->keyRoot_ . $token . '/publicKey.pem';
             Log::info('$keyPath=' . $keyPath);
             $pubkeyid = openssl_pkey_get_public($keyPath);
             Log::info('$pubkeyid=' . $pubkeyid);
             try {
-                 $ok = openssl_verify($token, $signArray, $pubkeyid);
+                 $ok = openssl_verify($token, $signString, $pubkeyid);
                  openssl_free_key($pubkeyid);
                  Log::info($ok);
                  if ($ok == 1) {
