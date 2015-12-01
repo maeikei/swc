@@ -33,7 +33,7 @@ swc.rsa.arrayBufferToBase64String = function (arrayBuffer) {
 swc.rsa.convertBinaryToPem = function (binaryData,tag) {
 	var base64Cert = swc.rsa.arrayBufferToBase64String(binaryData);
 
-	var pemCert = '-----BEGIN ' + tag + 'KEY-----\r\n';
+	var pemCert = '-----BEGIN ' + tag + ' KEY-----\r\n';
 
 	var nextIndex = 0;
 	var lineLength;
