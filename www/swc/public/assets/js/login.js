@@ -1,5 +1,4 @@
 
-/*
 var swc = swc || {};
 swc.rsa = swc.rsa || {};
 swc.rsa.privateKey = {};
@@ -202,7 +201,9 @@ $(function(){
       swc.rsa.createKeyPair();
   }
 });
-*/
+
+
+/*
 
 var swc = swc || {};
 swc.rsa = swc.rsa || {};
@@ -231,5 +232,6 @@ $(function(){
       swc.rsa.createKeyPair();
   }
 });
+*/
 
 
