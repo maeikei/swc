@@ -30,10 +30,10 @@ swc.rsa.arrayBufferToBase64String = function (arrayBuffer) {
 	return btoa(byteString);
 }
 	
-swc.rsa.convertBinaryToPem = function (binaryData) {
+swc.rsa.convertBinaryToPem = function (binaryData,tag) {
 	var base64Cert = swc.rsa.arrayBufferToBase64String(binaryData);
 
-	var pemCert = "-----BEGIN PUBLIC KEY-----\r\n";
+	var pemCert = "-----BEGIN ' + tag + 'KEY-----\r\n";
 
 	var nextIndex = 0;
 	var lineLength;
@@ -46,7 +46,7 @@ swc.rsa.convertBinaryToPem = function (binaryData) {
 		nextIndex += 64;
 	}
 
-	pemCert += "-----END PUBLIC KEY-----\r\n";
+	pemCert += "-----END ' + tag + ' KEY-----\r\n";
 	return pemCert;
 }
 
@@ -117,7 +117,7 @@ swc.rsa.savePublicKey = function(key) {
     .then(function(keydata){
       //returns the exported key data
       console.log(keydata);
-      var keyStr = swc.rsa.convertBinaryToPem(keydata);
+      var keyStr = swc.rsa.convertBinaryToPem(keydata,'PUBLIC');
       console.log(keyStr);
       localStorage.setItem('swc.login.publicKey',keyStr);
       var keyJson = {'publicKey':keyStr};
@@ -141,6 +141,23 @@ swc.rsa.savePrivateKey = function(key) {
       console.error(err);
     });
 }
+swc.rsa.savePrivateKeyDebug = function(key) {
+  window.crypto.subtle.exportKey(
+    "pkcs8", //can be "jwk" (public or private), "spki" (public only), or "pkcs8" (private only)
+    key //can be a publicKey or privateKey, as long as extractable was true
+    )
+    .then(function(keydata){
+      //returns the exported key data
+      //console.log(keydata);
+      var keyStr = swc.rsa.convertBinaryToPem(keydata,'PRIVATE');
+      console.log(keyStr);
+      localStorage.setItem('swc.login.privateKey.debug',keyStr);
+    })
+    .catch(function(err){
+      console.error(err);
+    });
+}
+
 swc.rsa.createKeyPair = function () {
   window.crypto.subtle.generateKey({
     name: "RSASSA-PKCS1-v1_5",
@@ -158,6 +175,7 @@ swc.rsa.createKeyPair = function () {
     console.log(key.privateKey);
     swc.rsa.savePublicKey(key.publicKey);
     swc.rsa.savePrivateKey(key.privateKey);
+    swc.rsa.savePrivateKeyDebug(key.privateKey);
     swc.rsa.privateKey = key.privateKey;
   })
   .catch(function(err){
