@@ -182,7 +182,7 @@ swc.rsa.importKey = function (privateKey) {
   .then(function(privateKey){
     //returns a publicKey (or privateKey if you are importing a private key)
     console.log(privateKey);
-    swc.rsa.privateKey = privateKey;
+    swc.rsa.privateKey = privateKey;nmmn
     swc.rsa.signToken();
   })
   .catch(function(err){
@@ -204,6 +204,32 @@ $(function(){
 });
 */
 
+var swc = swc || {};
+swc.rsa = swc.rsa || {};
 
+swc.rsa.createKeyPair = function () {
+  var pkey = new RSAKey();
+  pkey.generate(4096, '10001'); // generate 4096bit RSA private key with public exponent 'x010001'
+  var pem = PKCS5PKEY.getEryptedPKCS5PEMFromRSAKey(pkey, '');
+  localStorage.setItem('swc.login.privateKey',pem);
+  var pubkey_pem = KJUR.asn1.x509.X509Util.getPKCS8PubKeyPEMfromRSAKey(pkey);
+  localStorage.setItem('swc.login.publicKey',pubkey_pem);
+}
+
+swc.rsa.importKey = function (privateKey) {
+}
+
+
+
+$(function(){
+  var privateKey = localStorage.getItem('swc.login.privateKey');
+  //console.log(privateKey);
+  if (privateKey && 'string'== typeof privateKey) {
+    var keyJson= JSON.parse(privateKey);
+    swc.rsa.importKey(keyJson);
+  } else {
+      swc.rsa.createKeyPair();
+  }
+});
 
 
