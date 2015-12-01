@@ -89,8 +89,7 @@ class LoginController extends Controller
             $pubkeyid = openssl_pkey_get_public($keyPath);
             Log::info('$pubkeyid=' . $pubkeyid);
             try {
-                 $tokenArray = str_split($token);
-                 $ok = openssl_verify($tokenArray, $signString, $pubkeyid);
+                 $ok = openssl_verify($token, $signString, $pubkeyid);
                  openssl_free_key($pubkeyid);
                  Log::info($ok);
                  if ($ok == 1) {
