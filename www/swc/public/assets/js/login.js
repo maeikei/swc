@@ -129,16 +129,13 @@ swc.rsa.savePublicKey = function(key) {
 }
 swc.rsa.savePrivateKey = function(key) {
   window.crypto.subtle.exportKey(
-    "pkcs8", //can be "jwk" (public or private), "spki" (public only), or "pkcs8" (private only)
+    "jwk", //can be "jwk" (public or private), "spki" (public only), or "pkcs8" (private only)
     key //can be a publicKey or privateKey, as long as extractable was true
     )
     .then(function(keydata){
       //returns the exported key data
       //console.log(keydata);
-      var keyStr = swc.rsa.convertBinaryToPem(keydata);
-      console.log(keyStr);
-      var name= 'swc.login.privateKey';
-      localStorage.setItem(name,keyStr);
+      localStorage.setItem('swc.login.privateKey',JSON.stringify(keydata));
     })
     .catch(function(err){
       console.error(err);
@@ -169,7 +166,7 @@ swc.rsa.createKeyPair = function () {
 }
 swc.rsa.importKey = function (privateKey) {
   window.crypto.subtle.importKey(
-    "pkcs8", //can be "jwk" (public or private), "spki" (public only), or "pkcs8" (private only)
+    "jwk", //can be "jwk" (public or private), "spki" (public only), or "pkcs8" (private only)
     privateKey,
     {   //these are the algorithm options
     name: "RSASSA-PKCS1-v1_5",
@@ -181,7 +178,7 @@ swc.rsa.importKey = function (privateKey) {
   .then(function(privateKey){
     //returns a publicKey (or privateKey if you are importing a private key)
     console.log(privateKey);
-    swc.rsa.privateKey = privateKey;nmmn
+    swc.rsa.privateKey = privateKey;
     swc.rsa.signToken();
   })
   .catch(function(err){
