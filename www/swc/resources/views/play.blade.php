@@ -38,7 +38,7 @@
     <body>
         <div class="container">
             <div class="content">
-                  <video width="640" height="360" autoplay>
+                  <video width="640" height="360" autoplay controls>
                     <source src="/swc/videos/wv.ss.{{$file}}.mov">
                       Your browser does not support the video tag.
                   </video>
