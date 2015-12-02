@@ -20,10 +20,10 @@ class WelcomeController extends Controller
         //
         $files = shell_exec('find /media/hdd/ssroot/livestreaming/wv.ss.*.mov -type f -print0 | xargs -0 ls -t | sed -e "s/\/media\/hdd\/ssroot\/livestreaming\///"');
         Log::info('$files=<' . $files . '>');
-        $FilesArray = explode('.mov',$files);
+        $FilesArray = explode("\n",$files);
         foreach ($FilesArray as $file) {
-            $file = str_replace("\nwv.ss.",'',$file);
-            Log::info('$file=<' . $file . '>');
+            $name = str_replace("wv.ss.",'',$file);
+            Log::info('$name=<' . $name . '>');
         }
         return view('welcome')->with($files);
     }
