@@ -39,7 +39,7 @@
         <div class="container">
             <div class="content">
                 @foreach ($name as $file)
-                    <a href="/swc/play?{{$file}}"></a>
+                    <a href="/swc/play/{{$file}}">{{$file}}</a>
                 @endforeach
             </div>
         </div>
