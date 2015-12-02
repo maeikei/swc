@@ -25,8 +25,8 @@ class WelcomeController extends Controller
         foreach ($FilesArray as $file) {
             $name = str_replace("wv.ss.",'',$file);
             $name = str_replace(".mov",'',$name);
-            Log::info('$file=<' . $file . '>');
-            Log::info('$name=<' . $name . '>');
+            //Log::info('$file=<' . $file . '>');
+            //Log::info('$name=<' . $name . '>');
             $FileData[$name] = $file;
         }
         return view('welcome')->with($FileData);
