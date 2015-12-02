@@ -38,7 +38,7 @@
     <body>
         <div class="container">
             <div class="content">
-                @foreach ($FileData as $File)
+                @foreach ($FileData as $name=>$File)
                     <video width="32" height="18" controls>
                         <source src="{{$File}}" type="video/mp4">
                         Your browser does not support the video tag.
