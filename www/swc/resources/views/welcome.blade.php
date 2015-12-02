@@ -39,10 +39,7 @@
         <div class="container">
             <div class="content">
                 @foreach ($name as $file)
-                    <video width="32" height="18" controls>
-                        <source src="/swc/videos/wv.ss.{{$file}}.mov" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <a href="/swc/play?{{$file}}"></a>
                 @endforeach
             </div>
         </div>
