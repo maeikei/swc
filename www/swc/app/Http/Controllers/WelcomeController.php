@@ -33,7 +33,7 @@ class WelcomeController extends Controller
             'name'  => $FileName,
             'src'   => $files
             );
-        return view('welcome')->with($FileData);
+        return view('welcome',['name' =>$FileName,'src'=>$files]);
     }
 
     /**
