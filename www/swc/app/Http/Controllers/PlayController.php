@@ -17,6 +17,7 @@ class PlayController extends Controller
     public function index()
     {
         //
+        return view('play');
     }
 
     /**
@@ -48,7 +49,7 @@ class PlayController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('play',['file'=>$id]);
     }
 
     /**
