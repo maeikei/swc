@@ -22,9 +22,10 @@ class WelcomeController extends Controller
         Log::info('$files=<' . $files . '>');
         $FilesArray = explode('.mov',$files);
         foreach ($FilesArray as $file) {
+            $file = str_replace('\nwv.ss','',$file);
             Log::info('$file=<' . $file . '>');
         }
-        return view('welcome');
+        return view('welcome')->with($files);
     }
 
     /**
