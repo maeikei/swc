@@ -21,14 +21,18 @@ class WelcomeController extends Controller
         $files = shell_exec('find /media/hdd/ssroot/livestreaming/wv.ss.*.mov -type f -print0 | xargs -0 ls -t | sed -e "s/\/media\/hdd\/ssroot\/livestreaming\///"');
         //Log::info('$files=<' . $files . '>');
         $FilesArray = explode("\n",$files);
-        $FileData = [];
+        $FileName = [];
         foreach ($FilesArray as $file) {
             $name = str_replace("wv.ss.",'',$file);
             $name = str_replace(".mov",'',$name);
             //Log::info('$file=<' . $file . '>');
             //Log::info('$name=<' . $name . '>');
-            $FileData[$name] = $file;
+            array_push($FileName,$name);
         }
+        $FileData = array(
+            'name'  => $FileName,
+            'src'   => $files
+            );
         return view('welcome')->with($FileData);
     }
 
