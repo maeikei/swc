@@ -16,3 +16,5 @@ Route::get('/', function () {
 });
 Route::resource('welcome', 'WelcomeController');
 Route::resource('login', 'LoginController');
+Route::resource('play', 'PlayController');
+
