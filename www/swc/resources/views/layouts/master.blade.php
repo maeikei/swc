@@ -24,7 +24,7 @@
             <li><a href="/xuniverse">{{trans('navbar.xuniverse')}}</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-		<li class="active"><a href="/">Fixed top <span class="sr-only">(current)</span></a></li>
+		<li class="active"><a href="/">Top</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
