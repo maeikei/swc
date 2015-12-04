@@ -7,19 +7,17 @@
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
     </head>
     <body>
-        <nav class="navbar navbar-default">
-            <div class="container">
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand"></a>
+                    <div class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="#">メニューＡ</a></li>
+                            <li><a href="#">メニューB</a></li>
+                        </ul>
+                        <p class="navbar-text navbar-right">ようこそ <a href="#" class="navbar-link">ゲスト</a> さん。</p>
+                    </div>
                 </div>
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#"></a></li>
-                    <li><a href="#"></a></li>
-                    <li><a href="#"></a></li>
-                </ul>
-                <button type="button" class="btn btn-default navbar-btn">
-                    <span class="glyphicon glyphicon-envelope"></span>
-                </button>
             </div>
         </nav>
         @section('sidebar')
