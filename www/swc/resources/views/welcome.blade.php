@@ -1,47 +1,13 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Security Wifi Camera</title>
+@extends('layouts.master')
 
-        <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+@section('sidebar')
+    @parent
+    <p>This is appended to the master sidebar.</p>
+@endsection
 
-        <style>
-            html, body {
-                height: 100%;
-            }
+@section('content')
+    @foreach ($name as $file)
+        <a href="/swc/play/{{$file}}">{{$file}}</a>
+    @endforeach
+@endsection
 
-            body {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                display: table;
-                font-weight: 100;
-                font-family: 'Lato';
-            }
-
-            .container {
-                text-align: center;
-                display: table-cell;
-                vertical-align: middle;
-            }
-
-            .content {
-                text-align: center;
-                display: inline-block;
-            }
-
-            .title {
-                font-size: 96px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <div class="content">
-                @foreach ($name as $file)
-                    <a href="/swc/play/{{$file}}">{{$file}}</a>
-                @endforeach
-            </div>
-        </div>
-    </body>
-</html>
