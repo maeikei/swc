@@ -12,9 +12,9 @@
                 <div class="navbar-header">
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="{{ HTML::linkAction('Welcome@index', 'Welcome') }}">Top</a></li>
+                            <li class="active"><a href="{{ route('welcome') }}">Top</a></li>
                         </ul>
-                        <p class="navbar-text navbar-right">ようこそ <a href="{{ HTML::linkAction('Login@index', 'Login') }}" class="navbar-link">ゲスト</a> さん。</p>
+                        <p class="navbar-text navbar-right">ようこそ <a href="{{ route('login') }}" class="navbar-link">ゲスト</a> さん。</p>
                     </div>
                 </div>
             </div>
