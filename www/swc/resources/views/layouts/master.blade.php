@@ -7,6 +7,21 @@
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
     </head>
     <body>
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand"></a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#"></a></li>
+                    <li><a href="#"></a></li>
+                    <li><a href="#"></a></li>
+                </ul>
+                <button type="button" class="btn btn-default navbar-btn">
+                    <span class="glyphicon glyphicon-envelope"></span>
+                </button>
+            </div>
+        </nav>
         @section('sidebar')
             This is the master sidebar.
         @show
