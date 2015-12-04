@@ -11,9 +11,12 @@
 |
 */
 
+/*
 Route::get('/', function () {
     return view('welcome');
 });
+*/
+Route::resource('', 'WelcomeController');
 Route::resource('welcome', 'WelcomeController');
 Route::resource('login', 'LoginController');
 Route::resource('play', 'PlayController');
