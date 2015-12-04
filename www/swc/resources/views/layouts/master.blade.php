@@ -12,9 +12,9 @@
                 <div class="navbar-header">
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="{{ action('WelcomController@index') }}">Top</a></li>
+                            <li class="active"><a href="#">Top</a></li>
                         </ul>
-                        <p class="navbar-text navbar-right">ようこそ <a href="{{ action('LoginController@index') }}" class="navbar-link">ゲスト</a> さん。</p>
+                        <p class="navbar-text navbar-right">ようこそ <a href="#" class="navbar-link">ゲスト</a> さん。</p>
                     </div>
                 </div>
             </div>
