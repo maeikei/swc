@@ -24,27 +24,7 @@
             <li><a href="/xuniverse">{{trans('navbar.xuniverse')}}</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
- 			<li>
-			  <button type="button" class="btn btn-default navbar-btn language_button" value="en" >
-			    <img src="{{ asset('/flags/us.svg') }}" alt="button" />
-			  </button>
-			</li>
- 			<li>
-			  <button type="button" class="btn btn-default navbar-btn language_button" value="zh" >
-			    <img src="{{ asset('/flags/cn.svg') }}" alt="button" />
-			  </button>
-			</li>
- 			<li>
-			  <button type="button" class="btn btn-default navbar-btn language_button" value="ja" >
-			    <img src="{{ asset('/flags/jp.svg') }}" alt="button" />
-			  </button>
-			</li>
- 			<li>
-			  <button type="button" class="btn btn-default navbar-btn language_button" value="ru" >
-			    <img src="{{ asset('/flags/ru.svg') }}" alt="button" />
-			  </button>
-			</li>
-			<li class="active"><a href="/">Fixed top <span class="sr-only">(current)</span></a></li>
+		<li class="active"><a href="/">Fixed top <span class="sr-only">(current)</span></a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
