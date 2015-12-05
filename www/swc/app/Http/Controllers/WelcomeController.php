@@ -61,8 +61,8 @@ class WelcomeController extends Controller
             } else {
                 $FileName[$year] = [];
                 $FileName[$year][$month] = [];
-                $FileName[$year][$month][$hour] = [];
-                array_push($FileName[$year][$month][$hour],$name);
+                $FileName[$year][$month][$day] = [];
+                array_push($FileName[$year][$month][$day],$name);
             }
         }
         return view('welcome',['clipsSortTime' =>$FileName]);
