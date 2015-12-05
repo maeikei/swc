@@ -13,7 +13,7 @@
                 @foreach ($ClipsDay as $Clip => $Time)
                     {{{$Clip}}}
                     {{{$Time}}}
-                    <a href="/swc/play/{{{$Clip}}}">{{{$Time}}}</a>
+                    <!--a href="/swc/play/{{{$Clip}}}">{{{$Time}}}</a-->
                 @endforeach
                 </div>
             @endforeach
