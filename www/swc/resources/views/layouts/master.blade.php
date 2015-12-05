@@ -17,11 +17,11 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/about">{{trans('navbar.watorvapor_about')}}</a>
+          <a class="navbar-brand" href="/about">about</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="/xuniverse">{{trans('navbar.xuniverse')}}</a></li>
+            <li><a href="/swc/arch">System</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
 		<li class="active"><a href="/">Top</a></li>
