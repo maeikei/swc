@@ -10,8 +10,8 @@
                     {{{$year}}}.{{{$month}}}.{{{$day}}}
                 </div>
                 <div class="clipGroupDayClip">
-                @foreach ($ClipsDay as $Clip => $Time)
-                    <!--a href="/swc/play/{{{$Clip}}}">{{{$Time}}}</a-->
+                @foreach ($ClipsDay as $Clip)
+                    <a href="/swc/play/{{{$Clip}}}">{{{$Clip}}}</a>
                 @endforeach
                 </div>
             @endforeach
