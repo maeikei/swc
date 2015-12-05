@@ -47,16 +47,16 @@ class WelcomeController extends Controller
             
             if (isset($FileName[$year])) {
                 if (isset($FileName[$year][$month])) {
-                    if (isset($FileName[$year][$month][$hour])) {
-                        array_push($FileName[$year][$month][$hour],$name);
+                    if (isset($FileName[$year][$month][$day])) {
+                        array_push($FileName[$year][$month][$day],$name);
                     } else {
-                        $FileName[$year][$month][$hour] = [];
-                        array_push($FileName[$year][$month][$hour],$name);
+                        $FileName[$year][$month][$day] = [];
+                        array_push($FileName[$year][$month][$day],$name);
                     }
                 } else {
                     $FileName[$year][$month] = [];
-                    $FileName[$year][$month][$hour] = [];
-                    array_push($FileName[$year][$month][$hour],$name);
+                    $FileName[$year][$month][$day] = [];
+                    array_push($FileName[$year][$month][$day],$name);
                 }
             } else {
                 $FileName[$year] = [];
