@@ -1,3 +1,15 @@
 body {
   padding-top: 50px;
 }
+
+.clipGroupDay { 
+  color: red; 
+  font-size: 36pt;
+  margin-left: 50px;
+}
+
+.clipGroupDayClip { 
+  color: blue; 
+  font-size: 12pt;
+  margin-left: 60px;
+}
