@@ -7,7 +7,9 @@
             <div class="clipGroupMonth">
             @foreach ($ClipsMonth as $day => $ClipsDay)
                 <div class="clipGroupDay">
-                <a href="/swc/play/{{{$year}}}.{{{$month}}}.{{{$day}}}">{{{$year}}}.{{{$month}}}.{{{$day}}}</a>
+                    {{{$year}}}.{{{$month}}}.{{{$day}}}
+                </div>
+                <div class="clipGroupDayClip">
                 @foreach ($ClipsDay as $Clip)
                     <a href="/swc/play/{{{$Clip}}}">{{{$Clip}}}</a>
                 @endforeach
