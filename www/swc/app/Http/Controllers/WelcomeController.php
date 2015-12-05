@@ -48,21 +48,21 @@ class WelcomeController extends Controller
             if (isset($FileName[$year])) {
                 if (isset($FileName[$year][$month])) {
                     if (isset($FileName[$year][$month][$day])) {
-                        array_push($FileName[$year][$month][$day],[$name=>$hour . $min]);
+                        array_push($FileName[$year][$month][$day],[$name=>$hour . ':' . $min]);
                     } else {
                         $FileName[$year][$month][$day] = [];
-                        array_push($FileName[$year][$month][$day],[$name=>$hour . $min]);
+                        array_push($FileName[$year][$month][$day],[$name=>$hour . ':' . $min]);
                     }
                 } else {
                     $FileName[$year][$month] = [];
                     $FileName[$year][$month][$day] = [];
-                    array_push($FileName[$year][$month][$day],[$name=>$hour . $min]);
+                    array_push($FileName[$year][$month][$day],[$name=>$hour . ':' . $min]);
                 }
             } else {
                 $FileName[$year] = [];
                 $FileName[$year][$month] = [];
                 $FileName[$year][$month][$day] = [];
-                array_push($FileName[$year][$month][$day],[$name=>$hour . $min]);
+                array_push($FileName[$year][$month][$day],[$name=>$hour . ':' . $min]);
             }
         }
         return view('welcome',['clipsSortTime' =>$FileName]);
