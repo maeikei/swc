@@ -26,6 +26,6 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('inspire')
                  ->hourly();
-        $schedule->exec('')->everyTenMinutes();         
+        $schedule->exec('cd /media/hdd/ssroot && ./rtsp.sh')->everyTenMinutes();         
     }
 }
