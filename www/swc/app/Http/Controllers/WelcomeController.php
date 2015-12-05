@@ -28,6 +28,9 @@ class WelcomeController extends Controller
             $name = str_replace(".mov",'',$name);
             $name = str_replace("\n",'',$name);
             $nameArray = explode(".",$name);
+            if (5 > count($nameArray)) {
+                continue;
+            }
             $year = $nameArray[0];
             $month = $nameArray[1];
             $day = $nameArray[2];
