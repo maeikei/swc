@@ -36,11 +36,11 @@ class WelcomeController extends Controller
             $day = $nameArray[2];
             $hour = $nameArray[3];
             $min = $nameArray[4];
-            Log::info('$nameArray[0]=<' . $nameArray[0] . '>');
-            Log::info('$nameArray[1]=<' . $nameArray[1] . '>');
-            Log::info('$nameArray[2]=<' . $nameArray[2] . '>');
-            Log::info('$nameArray[3]=<' . $nameArray[3] . '>');
-            Log::info('$nameArray[4]=<' . $nameArray[4] . '>');
+            //Log::info('$nameArray[0]=<' . $nameArray[0] . '>');
+            //Log::info('$nameArray[1]=<' . $nameArray[1] . '>');
+            //Log::info('$nameArray[2]=<' . $nameArray[2] . '>');
+            //Log::info('$nameArray[3]=<' . $nameArray[3] . '>');
+            //Log::info('$nameArray[4]=<' . $nameArray[4] . '>');
             //Log::info('$file=<' . $file . '>');
             //Log::info('$name=<' . $name . '>');
             //array_push($FileName,$name);
