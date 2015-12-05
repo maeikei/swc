@@ -11,8 +11,8 @@
                 </div>
                 <div class="clipGroupDayClip">
                 @foreach ($ClipsDay as $Clip => $Time)
-                    {{{$Clip}}}
-                    {{{$Time}}}
+                    {{{var_dump($Clip)}}}
+                    {{{var_dump($Time)}}}
                     <!--a href="/swc/play/{{{$Clip}}}">{{{$Time}}}</a-->
                 @endforeach
                 </div>
