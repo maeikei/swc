@@ -23,6 +23,7 @@ class WelcomeController extends Controller
         $FilesArray = explode(".mov",$files);
         $FileName = [];
         foreach ($FilesArray as $file) {
+            Log::info('$file=<' . $file . '>');
             $name = str_replace("wv.ss.",'',$file);
             $name = str_replace(".mov",'',$name);
             $name = str_replace("\n",'',$name);
@@ -39,7 +40,6 @@ class WelcomeController extends Controller
             Log::info('$nameArray[4]=<' . $nameArray[4] . '>');
             //Log::info('$file=<' . $file . '>');
             //Log::info('$name=<' . $name . '>');
-            Log::info('$file=<' . $file . '>');
             //array_push($FileName,$name);
             
             if (isset($FileName[$year])) {
