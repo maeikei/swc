@@ -11,7 +11,7 @@
                 </div>
                 <div class="clipGroupDayClip">
                 @foreach ($ClipsDay as $Clip)
-                    <a href="/swc/play/{{{$Clip}}}">{{{$Clip}}}</a>
+                    <a href="/swc/play/{{{$Clip}}}">{{{str_replace($year . '.' . $month . '.' . $day,'',$Clip)}}}</a>
                 @endforeach
                 </div>
             @endforeach
