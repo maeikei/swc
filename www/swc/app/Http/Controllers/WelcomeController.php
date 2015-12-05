@@ -26,11 +26,18 @@ class WelcomeController extends Controller
             $name = str_replace("wv.ss.",'',$file);
             $name = str_replace(".mov",'',$name);
             $name = str_replace("\n",'',$name);
+            $nameArray = explode(".",$name);
+            Log::info('$nameArray[0]=<' . $nameArray[0] . '>');
+            Log::info('$nameArray[1]=<' . $nameArray[1] . '>');
+            Log::info('$nameArray[2]=<' . $nameArray[2] . '>');
+            Log::info('$nameArray[3]=<' . $nameArray[3] . '>');
+            Log::info('$nameArray[4]=<' . $nameArray[4] . '>');
             //Log::info('$file=<' . $file . '>');
             //Log::info('$name=<' . $name . '>');
+            Log::info('$file=<' . $file . '>');
             array_push($FileName,$name);
         }
-        return view('welcome',['name' =>$FileName]);
+        return view('welcome',['clipsSortTime' =>$FileName]);
     }
 
     /**
