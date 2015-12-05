@@ -23,7 +23,7 @@ class WelcomeController extends Controller
         $FilesArray = explode(".mov",$files);
         $FileName = [];
         foreach ($FilesArray as $file) {
-            Log::info('$file=<' . $file . '>');
+            #Log::info('$file=<' . $file . '>');
             $name = str_replace("wv.ss.",'',$file);
             $name = str_replace(".mov",'',$name);
             $name = str_replace("\n",'',$name);
