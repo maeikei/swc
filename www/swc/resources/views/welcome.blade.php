@@ -1,8 +1,8 @@
 @extends('layouts.master')
 
 @section('content')
-    @foreach ($clipsSortTime as $month)
-        <a href="/swc/play/{{$file}}">{{$file}}</a>
+    @foreach ($clipsSortTime as $year)
+        <a href="/swc/play/{{$year}}">{{$year}}</a>
     @endforeach
 @endsection
 
