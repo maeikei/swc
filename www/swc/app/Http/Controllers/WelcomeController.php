@@ -27,6 +27,11 @@ class WelcomeController extends Controller
             $name = str_replace(".mov",'',$name);
             $name = str_replace("\n",'',$name);
             $nameArray = explode(".",$name);
+            $year = $nameArray[0];
+            $month = $nameArray[1];
+            $day = $nameArray[2];
+            $hour = $nameArray[3];
+            $min = $nameArray[4];
             Log::info('$nameArray[0]=<' . $nameArray[0] . '>');
             Log::info('$nameArray[1]=<' . $nameArray[1] . '>');
             Log::info('$nameArray[2]=<' . $nameArray[2] . '>');
@@ -35,7 +40,16 @@ class WelcomeController extends Controller
             //Log::info('$file=<' . $file . '>');
             //Log::info('$name=<' . $name . '>');
             Log::info('$file=<' . $file . '>');
-            array_push($FileName,$name);
+            //array_push($FileName,$name);
+            
+            if (isset($FileName[$year])) {
+                
+            } else {
+                $FileName[$year] = [];
+                $FileName[$year][$month] = [];
+                $FileName[$year][$month][$hour] = [];
+                array_push($FileName[$year][$month][$hour],$name);
+            }
         }
         return view('welcome',['clipsSortTime' =>$FileName]);
     }
