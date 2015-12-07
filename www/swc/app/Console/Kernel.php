@@ -4,6 +4,8 @@ namespace swc\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Log;
+
 
 class Kernel extends ConsoleKernel
 {
@@ -26,6 +28,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('inspire')
                  ->hourly();
+        Log::info('run cd /media/hdd/ssroot && ./rtsp.sh');
         $schedule->exec('cd /media/hdd/ssroot && ./rtsp.sh')->everyTenMinutes();
     }
 }
