@@ -18,7 +18,7 @@ class WelcomeController extends Controller
     public function index()
     {
         //
-        $files = shell_exec('find /media/hdd/ssroot/livestreaming/wv.ss.*.mov -type f -print0 | xargs -0 ls -t | sed -e "s/\/media\/hdd\/ssroot\/livestreaming\///"');
+        $files = shell_exec('ls -r /media/hdd/ssroot/livestreaming/wv.ss.*.mov | sed -e "s/\/media\/hdd\/ssroot\/livestreaming\///"');
         //Log::info('$files=<' . $files . '>');
         $FilesArray = explode(".mov",$files);
         $FileName = [];
