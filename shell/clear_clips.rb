@@ -8,5 +8,6 @@ p lastTwo.length
 if(lastOne.length != lastTwo.length) then
   lastTwo.each do |mov|
     p mov
+    `rm -f #{mov}`
   end
 end
