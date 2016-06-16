@@ -1,3 +1,3 @@
 #!/bin/bash
-files=`ls -r /media/hdd/ssroot/livestreaming/wv.ss.*.mov | head -n 600`
+files=`ls -r /media/hdd/ssroot/livestreaming/wv.ss.*.mov | tail -n 600`
 
