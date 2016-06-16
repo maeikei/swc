@@ -30,6 +30,6 @@ class Kernel extends ConsoleKernel
                  ->hourly();
         Log::info('run cd /media/hdd/ssroot && ./rtsp.sh');
         $schedule->exec('cd /media/hdd/ssroot && ./rtsp.sh')->everyTenMinutes();
-        $schedule->exec('cd /media/hdd/ssroot && ./clear_clips.sh')->daily();
+        $schedule->exec('cd /media/hdd/ssroot && ./clear_clips.rb')->daily();
     }
 }
